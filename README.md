@@ -28,8 +28,8 @@
 
 ---
 
-4. Test functionality (Postman collection available in the project folder):
-
+4. Test functionality (Postman : "Syntio - Containerization - Task 1.postman_collection"):
+    
     Stored JSON data is contained in **`de-syntio-task-1/storage/stored_json`** folder locally.
 
     **POST** `http://localhost:5000/receiver/message` (reciver server endpoint):
