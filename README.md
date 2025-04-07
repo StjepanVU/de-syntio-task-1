@@ -23,7 +23,7 @@
 3. Run the Docker Compose command:
 
     ```bash
-    docker-compose up
+    docker-compose up -d
     ```
 
 ---
