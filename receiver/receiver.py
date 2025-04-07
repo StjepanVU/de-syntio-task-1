@@ -27,6 +27,12 @@ def transform_message():
             "error": "invalid query"
         }), 400
     
+    if not data.get("message"):
+        return jsonify({
+            "status": "failed",
+            "error": "message cannot be empty"
+        }), 400
+    
     transformed_data = {
         "msg": data.get("message", ""),
         "dateTimeSent": datetime.now().isoformat()
