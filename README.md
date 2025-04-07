@@ -2,7 +2,7 @@
 
 **Task 1 (Containerization)** for Syntio – Data Engineer role application - Stjepan Milicic
 
-## 🚀 Project Installation Steps
+## 🚀 Project Installation Steps (bash)
 
 1. Clone the repository:
 
