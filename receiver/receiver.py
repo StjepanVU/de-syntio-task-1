@@ -10,16 +10,28 @@ STORE_API_URL = os.environ.get("STORE_API_URL", "http://127.0.0.1:5001/store")
 def index_page():
     return "Started <b>Receiver</b> server!"
 
-@app.route("/message", methods=["POST"])
+@app.route("/receiver/message", methods=["POST"])
 def transform_message():
     
     data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "status" : "failed",
+            "error" : "invalid request"
+        }), 400
+    
+    if set(data.keys()) != {"message"}:
+        return jsonify({
+            "status" : "failed",
+            "error" : "invalid query"
+        }),400
     
     transformed_data = {
         "msg": data.get("message", ""),
         "dateTimeSent": datetime.now().isoformat()
     }
-
+    # pass request to /storage/store
     try:
         response = requests.post(STORE_API_URL, json=transformed_data)
         if response.ok:
