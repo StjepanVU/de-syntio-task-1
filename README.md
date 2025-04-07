@@ -38,7 +38,8 @@
 
 5. Test functionality (Postman : "Syntio - Containerization - Task 1.postman_collection"):
     
-    Stored JSON data is contained in **`de-syntio-task-1/storage/stored_json`** folder locally.
+    - Stored JSON data is contained in **`de-syntio-task-1/stored_json`** folder locally.
+    - Configurable second (storage) server endpoint is referenced in the "docker-compose.yml" variable as "STORE_API_URL" environment variable.   
 
     **POST** `http://localhost:5000/receiver/message` (reciver server endpoint):
     ```json
@@ -46,6 +47,16 @@
       "message": "Lorem ipsum!"
     }
     ```
+    http-200
+   ```json
+   {
+    "filename": "msg-Ti8AOOXu.json",
+    "status": "success",
+    "status_code": 200
+   }
+   ```
+   
+  
 
     **POST** `http://localhost:5001/storage/store` (storage server endpoint):
     ```json
@@ -53,4 +64,11 @@
       "msg": "Lorem ipsum!",
       "dateTimeSent": "2025-04-07T15:44:27.832538"
     }
-    ```
+   ```
+     http-200
+   ```json
+    {
+    "filename": "msg-O4oRk57q.json",
+    "status": "success"
+    }
+   ```
