@@ -1,27 +1,48 @@
 # de-syntio-task-1
-Task 1 (Containerization) for Syntio; Data Engineer role application
 
-Project installation steps:
+**Task 1 (Containerization)** for Syntio – Data Engineer role application - Stjepan Milicic
 
-1. Clone the repository
-$ git clone https://github.com/StjepanVU/de-syntio-task-1.git
+## 🚀 Project Installation Steps
 
-2. Enter the project folder
-$ cd de-syntio-task-1
+1. Clone the repository:
 
-3. Run Docker compose command
-$ docker-compose up
+    ```bash
+    git clone https://github.com/StjepanVU/de-syntio-task-1.git
+    ```
 
-4. Test functionality (Postman collection available in the project folder)
-**POST** http://localhost:5000/receiver/message
-body:
-{
-    "message" : "Lorem ipsum!"
-}
+---
 
-**POST** http://localhost:5001/storage/store
-body:
-{
-  "msg": "asdadas",
-  "dateTimeSent": "2025-04-07T15:44:27.832538"
-}
+2. Enter the project folder:
+
+    ```bash
+    cd de-syntio-task-1
+    ```
+
+---
+
+3. Run the Docker Compose command:
+
+    ```bash
+    docker-compose up
+    ```
+
+---
+
+4. Test functionality (Postman collection available in the project folder):
+
+    Stored JSON data is contained in **`de-syntio-task-1/storage/stored_json`** folder locally.
+
+    **POST** `http://localhost:5000/receiver/message` (reciver server endpoint):
+    ```json
+    {
+      "message": "Lorem ipsum!"
+    }
+    ```
+
+    **POST** `http://localhost:5001/storage/store` (storage server endpoint):
+    ```json
+    {
+      "msg": "Lorem ipsum!",
+      "dateTimeSent": "2025-04-07T15:44:27.832538"
+    }
+    ```
