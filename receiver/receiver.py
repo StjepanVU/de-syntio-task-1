@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-STORE_API_URL = os.environ.get("STORE_API_URL", "http://127.0.0.1:5001/store")
+STORE_API_URL = os.environ.get("STORE_API_URL", "http://127.0.0.1:5001/storage/store")
 
 @app.route("/")
 def index_page():

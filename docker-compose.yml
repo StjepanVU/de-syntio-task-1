@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - STORE_API_URL=http://storage:5001/store
+      - STORE_API_URL=http://storage:5001/storage/store
     depends_on:
       - storage
 
