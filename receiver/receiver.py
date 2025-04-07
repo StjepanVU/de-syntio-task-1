@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
-import requests, os
+import requests
+import os
 
 app = Flask(__name__)
 
@@ -12,45 +13,53 @@ def index_page():
 
 @app.route("/receiver/message", methods=["POST"])
 def transform_message():
-    
     data = request.get_json()
 
     if not data:
         return jsonify({
-            "status" : "failed",
-            "error" : "invalid request"
+            "status": "failed",
+            "error": "invalid request"
         }), 400
     
     if set(data.keys()) != {"message"}:
         return jsonify({
-            "status" : "failed",
-            "error" : "invalid query"
-        }),400
+            "status": "failed",
+            "error": "invalid query"
+        }), 400
     
     transformed_data = {
         "msg": data.get("message", ""),
         "dateTimeSent": datetime.now().isoformat()
     }
-    # pass request to /storage/store
-    try:
-        response = requests.post(STORE_API_URL, json=transformed_data)
-        if response.ok:
-            storage_response = response.json()
-            filename = storage_response.get("filename")
-        
-        storage_status = {
-            "status": "success" if response.ok else "failed",
-            "status_code": response.status_code,
-            "filename" : filename
-        }
-    except requests.RequestException as e:
-        storage_status = {
-            "status": "failed",
-            "error": str(e)
-        }
-
+    
+    storage_status = store_request(transformed_data)
     return jsonify(storage_status)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+def store_request(transformed_data):
+    storage_status = {
+        "status": "failed",
+        "status_code": None,
+        "filename": None
+    }
+    
+    try:
+        response = requests.post(STORE_API_URL, json=transformed_data, timeout=10)
+        storage_status["status_code"] = response.status_code
+        
+        if response.ok:
+            try:
+                storage_response = response.json()
+                storage_status["status"] = "success"
+                storage_status["filename"] = storage_response.get("filename")
+            except ValueError:
+                storage_status["error"] = "Invalid JSON response from storage service"
+        else:
+            storage_status["error"] = f"Storage service returned {response.status_code}"
+            
+    except requests.RequestException as e:
+        storage_status["error"] = str(e)
+    
+    return storage_status
 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001, debug=True)
