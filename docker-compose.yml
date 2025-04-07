@@ -1,0 +1,23 @@
+services:
+  receiver:
+    build:
+      context: ./receiver
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - STORE_API_URL=http://storage:5001/store
+    depends_on:
+      - storage
+
+  storage:
+    build:
+      context: ./storage
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./stored_json:/app/stored_json
+
+volumes:
+  stored_json:
