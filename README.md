@@ -20,7 +20,15 @@
 
 ---
 
-3. Run the Docker Compose command:
+3. Start Docker Desktop:
+
+    ```bash
+    docker desktop start
+    ```
+
+---
+
+4. Run the Docker Compose command:
 
     ```bash
     docker-compose up -d
@@ -28,7 +36,7 @@
 
 ---
 
-4. Test functionality (Postman : "Syntio - Containerization - Task 1.postman_collection"):
+5. Test functionality (Postman : "Syntio - Containerization - Task 1.postman_collection"):
     
     Stored JSON data is contained in **`de-syntio-task-1/storage/stored_json`** folder locally.
 
