@@ -17,7 +17,7 @@
     cd de-syntio-task-1
     ```
 
-3. Start Docker Desktop
+3. Start Docker
 
 
 4. Run the Docker Compose command:
