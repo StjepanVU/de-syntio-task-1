@@ -87,6 +87,6 @@ http://localhost:5001/storage/store (storage server endpoint):
 {
     "filename": "msg-O4oRk57q.json",
     "status": "success"
-    }
+}
 ```
 
