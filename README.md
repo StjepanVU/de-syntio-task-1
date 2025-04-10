@@ -33,6 +33,10 @@
 ## 🔬 Tests
 - Stored JSON data is contained in **`de-syntio-task-1/stored_json`** folder locally.
 - Configurable second (storage) server endpoint is referenced in the "docker-compose.yml" variable as "STORE_API_URL" environment variable.
+- It can be changed on build by running the following command:
+```bash
+STORE_API_URL=http://{{server}}:{{port}}/storage/store docker-compose up
+```
 **POST** /receiver/message    
 
 cURL:
