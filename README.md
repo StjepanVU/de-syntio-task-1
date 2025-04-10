@@ -66,6 +66,7 @@ http-**200**
 
 **POST** /storage/store
 
+cURL:
 ```bash
 curl --location 'http://localhost:5001/storage/store' \
 -H 'Content-Type: application/json' \
